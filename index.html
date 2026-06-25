@@ -11,17 +11,93 @@
   <aside id="sidebar">
     <header>
       <h1>Architecture Map</h1>
-      <p class="subtitle">가본 곳과 갈 곳</p>
+      <p class="subtitle">영국 · 유럽 건축 탐방 지도</p>
+      <p id="storage-mode" class="storage-mode"></p>
     </header>
-    <div class="filters">
-      <label><input type="checkbox" id="filter-visited" checked /> <span class="dot visited"></span> 가본 곳</label>
-      <label><input type="checkbox" id="filter-tovisit" checked /> <span class="dot tovisit"></span> 갈 곳</label>
+
+    <!-- 통계 -->
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num" id="stat-visited">0</span>
+        <span class="stat-label"><span class="dot visited"></span>가본 곳</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-tovisit">0</span>
+        <span class="stat-label"><span class="dot tovisit"></span>갈 곳</span>
+      </div>
     </div>
+
+    <!-- 검색 / 필터 / 정렬 -->
+    <div class="controls">
+      <input type="search" id="search" placeholder="이름·도시·건축가 검색" autocomplete="off" />
+
+      <div class="control-row">
+        <select id="filter-country" title="국가 필터">
+          <option value="">전체 국가</option>
+        </select>
+        <select id="sort" title="정렬">
+          <option value="name">이름순</option>
+          <option value="year">연도순</option>
+          <option value="city">도시순</option>
+        </select>
+      </div>
+
+      <div class="filters">
+        <label><input type="checkbox" id="filter-visited" checked /> <span class="dot visited"></span> 가본 곳</label>
+        <label><input type="checkbox" id="filter-tovisit" checked /> <span class="dot tovisit"></span> 갈 곳</label>
+      </div>
+    </div>
+
+    <!-- 새 장소 추가 -->
+    <details id="add-panel">
+      <summary>+ 건축물 추가</summary>
+      <form id="add-form" class="add-form">
+        <input type="text" id="f-name" placeholder="이름 (예: 루브르 피라미드)" required />
+        <input type="text" id="f-city" placeholder="도시 (예: Paris)" />
+        <input type="text" id="f-country" placeholder="국가 (예: France)" />
+
+        <div class="geocode-row">
+          <input type="text" id="f-query" placeholder="좌표 검색어 (예: Louvre Pyramid Paris)" />
+          <button type="button" id="geocode-btn">검색</button>
+        </div>
+        <div id="geocode-results" class="geocode-results"></div>
+
+        <div class="coord-row">
+          <input type="number" step="any" id="f-lat" placeholder="위도(lat)" required />
+          <input type="number" step="any" id="f-lng" placeholder="경도(lng)" required />
+        </div>
+
+        <input type="text" id="f-architect" placeholder="건축가" />
+        <input type="number" id="f-year" placeholder="연도" />
+        <input type="text" id="f-photo" placeholder="사진 URL (선택)" />
+        <textarea id="f-note" placeholder="메모 (선택)" rows="2"></textarea>
+
+        <div class="status-pick">
+          <label><input type="radio" name="f-status" value="toVisit" checked /> 갈 곳</label>
+          <label><input type="radio" name="f-status" value="visited" /> 가본 곳</label>
+        </div>
+
+        <button type="submit" class="primary">지도에 추가</button>
+        <button type="button" id="export-btn" class="ghost">data.js용 코드 복사</button>
+      </form>
+    </details>
+
     <ul id="place-list"></ul>
   </aside>
+
   <div id="map"></div>
+
+  <!-- Leaflet -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Firebase (config.js에 값이 있을 때만 사용됨. 없으면 무시) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <!-- 앱 -->
+  <script src="config.js"></script>
   <script src="data.js"></script>
+  <script src="store.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
