@@ -1,0 +1,105 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --visited: #2e7d52;
+  --tovisit: #c0392b;
+  --bg: #fafafa;
+  --line: #e6e6e6;
+  --text: #1a1a1a;
+  --muted: #777;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+  color: var(--text);
+}
+
+#sidebar {
+  width: 320px;
+  flex-shrink: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--line);
+  background: var(--bg);
+  padding: 24px 20px;
+}
+
+#sidebar header { margin-bottom: 20px; }
+
+#sidebar h1 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.filters label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.visited { background: var(--visited); }
+.dot.tovisit { background: var(--tovisit); }
+
+#place-list { list-style: none; }
+
+.place-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.place-item:hover { opacity: 0.7; }
+
+.place-item .name {
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.place-item .meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+#map { flex: 1; height: 100vh; }
+
+.popup-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.popup-meta { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.popup-note { font-size: 13px; line-height: 1.4; }
+
+@media (max-width: 700px) {
+  body { flex-direction: column; }
+  #sidebar { width: 100%; height: 40vh; border-right: none; border-bottom: 1px solid var(--line); }
+  #map { height: 60vh; }
+}
