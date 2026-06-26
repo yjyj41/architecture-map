@@ -552,5 +552,182 @@ const PLACES = [
     status: "toVisit", architect: "Renzo Piano", year: 2016,
     note: "태양광 캐노피를 인 도서관·오페라 복합문화공간.",
     photo: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Stavros_Niarchos_Foundation_Cultural_Center_-_52035330487.jpg/960px-Stavros_Niarchos_Foundation_Cultural_Center_-_52035330487.jpg"
+  },
+
+  // ═══ 런던 컬렉션 ═══
+  {
+    name: "리든홀 빌딩 (치즈그레이터)", nameEn: "Leadenhall Building",
+    city: "London", country: "UK", lat: 51.5138, lng: -0.0822,
+    status: "toVisit", architect: "Rogers Stirk Harbour", year: 2014,
+    note: "비스듬한 쐐기형 외관, 별명 '치즈 강판'.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Cheesegrater_and_Gherkin.jpg/960px-Cheesegrater_and_Gherkin.jpg"
+  },
+  {
+    name: "20 펜처치 스트리트 (워키토키)", nameEn: "20 Fenchurch Street",
+    city: "London", country: "UK", lat: 51.5113, lng: -0.0837,
+    status: "toVisit", architect: "Rafael Viñoly", year: 2014,
+    note: "위가 불룩한 '워키토키', 옥상 스카이가든.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Walkie-Talkie_-_Sept_2015_%28cropped%29.jpg/960px-Walkie-Talkie_-_Sept_2015_%28cropped%29.jpg"
+  },
+  {
+    name: "런던 시청 (구 시청)", nameEn: "City Hall London",
+    city: "London", country: "UK", lat: 51.5045, lng: -0.0786,
+    status: "toVisit", architect: "Norman Foster", year: 2002,
+    note: "기울어진 달걀 모양의 유리 건물.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/London_-_City_Hall_%281%29.jpg/960px-London_-_City_Hall_%281%29.jpg"
+  },
+  {
+    name: "더 O2 (밀레니엄 돔)", nameEn: "The O2",
+    city: "London", country: "UK", lat: 51.5030, lng: 0.0032,
+    status: "toVisit", architect: "Richard Rogers", year: 1999,
+    note: "노란 마스트로 매단 거대한 돔.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/O2_Arena_%289499773307%29.jpg/960px-O2_Arena_%289499773307%29.jpg"
+  },
+  {
+    name: "런던 아이", nameEn: "London Eye",
+    city: "London", country: "UK", lat: 51.5033, lng: -0.1196,
+    status: "toVisit", architect: "Marks Barfield", year: 2000,
+    note: "템스 강변의 거대 관람차.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/London-Eye-2009.JPG/960px-London-Eye-2009.JPG"
+  },
+  {
+    name: "타워 브리지", nameEn: "Tower Bridge",
+    city: "London", country: "UK", lat: 51.5055, lng: -0.0754,
+    status: "toVisit", architect: "Horace Jones & John Wolfe Barry", year: 1894,
+    note: "빅토리아 고딕 양식의 도개교.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tower_Bridge_at_Dawn.jpg/960px-Tower_Bridge_at_Dawn.jpg"
+  },
+  {
+    name: "웨스트민스터 궁전 (국회의사당)", nameEn: "Palace of Westminster",
+    city: "London", country: "UK", lat: 51.4995, lng: -0.1248,
+    status: "toVisit", architect: "Charles Barry & A.W.N. Pugin", year: 1876,
+    note: "빅벤이 있는 고딕 리바이벌 의사당.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Houses_of_Parliament_in_2022_%28cropped%29.jpg/960px-Houses_of_Parliament_in_2022_%28cropped%29.jpg"
+  },
+  {
+    name: "웨스트민스터 사원", nameEn: "Westminster Abbey",
+    city: "London", country: "UK", lat: 51.4994, lng: -0.1273,
+    status: "toVisit", architect: "Henry Yevele 등", year: 1269,
+    note: "영국 대관식이 열리는 고딕 대성당.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Westminster_Abbey%2C_Westminster.jpg/960px-Westminster_Abbey%2C_Westminster.jpg"
+  },
+  {
+    name: "자연사 박물관", nameEn: "Natural History Museum, London",
+    city: "London", country: "UK", lat: 51.4967, lng: -0.1764,
+    status: "toVisit", architect: "Alfred Waterhouse", year: 1881,
+    note: "테라코타로 빚은 로마네스크풍 '자연의 대성당'.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Natural_History_Museum_London_Jan_2006.jpg/960px-Natural_History_Museum_London_Jan_2006.jpg"
+  },
+  {
+    name: "대영박물관", nameEn: "British Museum",
+    city: "London", country: "UK", lat: 51.5194, lng: -0.1270,
+    status: "toVisit", architect: "Robert Smirke (그레이트 코트: Foster)", year: 1852,
+    note: "신고전 박물관, 포스터의 유리 지붕 안뜰.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/British_Museum_%28aerial%29.jpg/960px-British_Museum_%28aerial%29.jpg"
+  },
+  {
+    name: "세인트 판크라스 역", nameEn: "St Pancras railway station",
+    city: "London", country: "UK", lat: 51.5320, lng: -0.1263,
+    status: "toVisit", architect: "George Gilbert Scott", year: 1868,
+    note: "붉은 벽돌 고딕 리바이벌 역사.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/St_Pancras_Railway_Station_2012-06-23.jpg/960px-St_Pancras_Railway_Station_2012-06-23.jpg"
+  },
+  {
+    name: "콜 드롭스 야드", nameEn: "Coal Drops Yard",
+    city: "London", country: "UK", lat: 51.5358, lng: -0.1257,
+    status: "toVisit", architect: "Heatherwick Studio", year: 2018,
+    note: "빅토리아 석탄 창고를 변형한 '키스하는 지붕' 쇼핑가.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Coal_Drops_Yard_0606.jpg/960px-Coal_Drops_Yard_0606.jpg"
+  },
+  {
+    name: "블룸버그 런던", nameEn: "Bloomberg London",
+    city: "London", country: "UK", lat: 51.5128, lng: -0.0930,
+    status: "toVisit", architect: "Norman Foster", year: 2017,
+    note: "청동 핀으로 덮인 친환경 본사, 스털링상 수상.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Bloomberg_London_exterior_-_Cannon_Street%2C_Walbrook.jpg/960px-Bloomberg_London_exterior_-_Cannon_Street%2C_Walbrook.jpg"
+  },
+  {
+    name: "로열 앨버트 홀", nameEn: "Royal Albert Hall",
+    city: "London", country: "UK", lat: 51.5010, lng: -0.1774,
+    status: "toVisit", architect: "Fowke & Scott", year: 1871,
+    note: "붉은 벽돌 타원형 공연장.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Royal_Albert_Hall%2C_London_-_Nov_2012.jpg/960px-Royal_Albert_Hall%2C_London_-_Nov_2012.jpg"
+  },
+  {
+    name: "원 캐나다 스퀘어", nameEn: "One Canada Square",
+    city: "London", country: "UK", lat: 51.5049, lng: -0.0195,
+    status: "toVisit", architect: "César Pelli", year: 1991,
+    note: "피라미드 지붕의 카나리워프 마천루.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/London_MMB_S6_Canary_Wharf.jpg/960px-London_MMB_S6_Canary_Wharf.jpg"
+  },
+  {
+    name: "트렐릭 타워", nameEn: "Trellick Tower",
+    city: "London", country: "UK", lat: 51.5240, lng: -0.2055,
+    status: "toVisit", architect: "Ernő Goldfinger", year: 1972,
+    note: "분리된 설비 타워가 특징인 브루탈리즘 주거.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Trellick_Tower_front_view_%28colour_brightness_adjust%29.jpg/960px-Trellick_Tower_front_view_%28colour_brightness_adjust%29.jpg"
+  },
+  {
+    name: "로열 페스티벌 홀", nameEn: "Royal Festival Hall",
+    city: "London", country: "UK", lat: 51.5055, lng: -0.1163,
+    status: "toVisit", architect: "LCC (Leslie Martin 등)", year: 1951,
+    note: "'페스티벌 오브 브리튼'의 모더니즘 콘서트홀.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Royal_Festival_Hall%2C_Belvedere_Road_%281%29.jpg"
+  },
+  {
+    name: "BT 타워", nameEn: "BT Tower",
+    city: "London", country: "UK", lat: 51.5215, lng: -0.1389,
+    status: "toVisit", architect: "Eric Bedford", year: 1964,
+    note: "원통형 통신탑, 한때 런던 최고 높이.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/1350342_II_BT_COMMUNICATION_TOWER%2C_CLEVELAND_MEWS_Camden_London_20250612_0003.jpg/960px-1350342_II_BT_COMMUNICATION_TOWER%2C_CLEVELAND_MEWS_Camden_London_20250612_0003.jpg"
+  },
+  {
+    name: "런던탑", nameEn: "Tower of London",
+    city: "London", country: "UK", lat: 51.5081, lng: -0.0759,
+    status: "toVisit", architect: "(노르만 왕조)", year: 1078,
+    note: "화이트 타워가 중심인 중세 요새.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Tower_of_London_from_the_Shard_%288515883950%29.jpg/960px-Tower_of_London_from_the_Shard_%288515883950%29.jpg"
+  },
+  {
+    name: "디자인 뮤지엄", nameEn: "Design Museum London",
+    city: "London", country: "UK", lat: 51.4995, lng: -0.2003,
+    status: "toVisit", architect: "John Pawson & OMA", year: 2016,
+    note: "쌍곡포물면 지붕의 옛 커먼웰스 연구소를 개조.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Design_Museum_%282%29_%28geograph_5246509%29.jpg/960px-Design_Museum_%282%29_%28geograph_5246509%29.jpg"
+  },
+  {
+    name: "빅토리아 앤드 앨버트 박물관 (V&A)", nameEn: "Victoria and Albert Museum",
+    city: "London", country: "UK", lat: 51.4966, lng: -0.1722,
+    status: "toVisit", architect: "Aston Webb 등", year: 1909,
+    note: "세계 최대 규모의 장식미술·디자인 박물관.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Facade_of_the_Victoria_and_Albert_Museum%2C_London-14279991463.jpg/960px-Facade_of_the_Victoria_and_Albert_Museum%2C_London-14279991463.jpg"
+  },
+  {
+    name: "킹스 크로스 역", nameEn: "King's Cross railway station",
+    city: "London", country: "UK", lat: 51.5320, lng: -0.1233,
+    status: "toVisit", architect: "John McAslan (서측 콘코스)", year: 2012,
+    note: "부채꼴 다이아그리드 지붕의 거대 콘코스.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/King%27s_Cross_Western_Concourse.jpg/960px-King%27s_Cross_Western_Concourse.jpg"
+  },
+  {
+    name: "미슐랭 하우스", nameEn: "Michelin House",
+    city: "London", country: "UK", lat: 51.4920, lng: -0.1685,
+    status: "toVisit", architect: "François Espinasse", year: 1911,
+    note: "타이어 모티프의 아르누보·아르데코 건물.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Michelin_House%2C_London_-_2022-09-04_%281%29.jpg/960px-Michelin_House%2C_London_-_2022-09-04_%281%29.jpg"
+  },
+  {
+    name: "이소콘 빌딩", nameEn: "Isokon building",
+    city: "London", country: "UK", lat: 51.5470, lng: -0.1640,
+    status: "toVisit", architect: "Wells Coates", year: 1934,
+    note: "영국 초기 모더니즘의 콘크리트 아파트.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Isokon_Building_Hampstead_2005.jpg/960px-Isokon_Building_Hampstead_2005.jpg"
+  },
+  {
+    name: "센터 포인트", nameEn: "Centre Point",
+    city: "London", country: "UK", lat: 51.5163, lng: -0.1300,
+    status: "toVisit", architect: "Richard Seifert", year: 1966,
+    note: "콘크리트 격자 외피의 1960년대 타워.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Centre_Point%2C_New_Oxford_Street_%281%29_-_geograph.org.uk_-_2659023.jpg"
   }
 ];
