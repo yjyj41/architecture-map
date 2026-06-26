@@ -48,6 +48,22 @@ const Store = (() => {
     return "";
   }
 
+  // 신규 시드 동기화 헬퍼
+  function nameKeys(p) {
+    return [(p.nameEn || "").trim(), (p.name || "").trim()].filter(Boolean);
+  }
+  function buildNameSet(arr) {
+    const s = new Set();
+    arr.forEach((p) => nameKeys(p).forEach((k) => s.add(k)));
+    return s;
+  }
+  function seedIsMissing(existingSet, seed) {
+    return !nameKeys(seed).some((k) => existingSet.has(k));
+  }
+  function seedSyncEnabled() {
+    return typeof SEED_SYNC === "undefined" ? true : !!SEED_SYNC;
+  }
+
   function firebaseEnabled() {
     return (
       typeof FIREBASE_CONFIG === "object" &&
@@ -68,13 +84,19 @@ const Store = (() => {
         places = seedWithIds();
       }
       // 사진 백필
-      let changed = false;
       places.forEach((p) => {
         if (!p.photo) {
           const ph = seedPhotoFor(p);
-          if (ph) { p.photo = ph; changed = true; }
+          if (ph) p.photo = ph;
         }
       });
+      // 신규 시드 동기화 (시드에 있는데 저장소에 없는 건물 추가)
+      if (seedSyncEnabled()) {
+        const existing = buildNameSet(places);
+        PLACES.forEach((s) => {
+          if (seedIsMissing(existing, s)) places.push(Object.assign({ id: uid() }, s));
+        });
+      }
       persist();
       notify();
       return Promise.resolve();
@@ -128,12 +150,22 @@ const Store = (() => {
           notify();
           if (!backfilled) {
             backfilled = true;
+            // 사진 백필
             places.forEach((p) => {
               if (!p.photo) {
                 const ph = seedPhotoFor(p);
                 if (ph) col.doc(p.id).update({ photo: ph }).catch(function () {});
               }
             });
+            // 신규 시드 동기화: 시드에 있는데 클라우드에 없는 건물 추가
+            if (seedSyncEnabled()) {
+              const existing = buildNameSet(places);
+              PLACES.forEach((s) => {
+                if (seedIsMissing(existing, s)) {
+                  col.add(Object.assign({}, s)).catch(function () {});
+                }
+              });
+            }
           }
         });
       }

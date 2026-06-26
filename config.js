@@ -32,3 +32,8 @@ const FIREBASE_CONFIG = {
 // MapTiler API 키 (지도 스타일용). 비워두면 기본 미니멀 타일로 표시됩니다.
 const MAPTILER_KEY = "6mGTT6imBThvskqWPEdq"; // yjyj41.github.io / localhost 로 제한된 키
 const MAP_STYLE = "aquarelle"; // 예: aquarelle, toner-v2, streets-v2, basic-v2
+
+// data.js 시드 중 저장소(클라우드/로컬)에 없는 건물을 자동으로 추가할지 여부.
+// 새 건물을 data.js에 넣어 배포하면 자동 반영됩니다.
+// 시드 건물을 삭제했는데 다시 생기는 게 싫으면 false로 바꾸세요.
+const SEED_SYNC = true;

@@ -219,5 +219,338 @@ const PLACES = [
     status: "toVisit", architect: "André Waterkeyn", year: 1958,
     note: "철 결정 구조를 1650억 배 확대한 구조물.",
     photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Brussels_-_Atomium_2022.jpg/960px-Brussels_-_Atomium_2022.jpg"
+  },
+
+  // ═══ 추가 컬렉션: 건축가들이 보는 유럽 명작·기이건축 ═══
+
+  // ── United Kingdom ─────────────────────────────────────
+  {
+    name: "내셔널 시어터", nameEn: "Royal National Theatre",
+    city: "London", country: "UK", lat: 51.5071, lng: -0.1141,
+    status: "toVisit", architect: "Denys Lasdun", year: 1976,
+    note: "템스 강변의 대표적 브루탈리즘 극장.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/The_National_Theatre%2C_South_Bank%2C_London_-_geograph.org.uk_-_1861458.jpg/960px-The_National_Theatre%2C_South_Bank%2C_London_-_geograph.org.uk_-_1861458.jpg"
+  },
+  {
+    name: "셀프리지스 버밍엄", nameEn: "Selfridges Building, Birmingham",
+    city: "Birmingham", country: "UK", lat: 52.4779, lng: -1.8940,
+    status: "toVisit", architect: "Future Systems", year: 2003,
+    note: "1만 5천 개 알루미늄 디스크로 덮인 블롭 건축.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Selfridges_Building%2C_Birmingham_%282012%29.jpg/960px-Selfridges_Building%2C_Birmingham_%282012%29.jpg"
+  },
+  {
+    name: "스코틀랜드 의회", nameEn: "Scottish Parliament Building",
+    city: "Edinburgh", country: "UK", lat: 55.9522, lng: -3.1747,
+    status: "toVisit", architect: "Enric Miralles (EMBT)", year: 2004,
+    note: "유기적 형태가 풍경에 녹아드는 의사당.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Holyrood_Parliament_Edinburgh_%286096619764%29.jpg/960px-Holyrood_Parliament_Edinburgh_%286096619764%29.jpg"
+  },
+  {
+    name: "에덴 프로젝트", nameEn: "Eden Project",
+    city: "Cornwall", country: "UK", lat: 50.3619, lng: -4.7447,
+    status: "toVisit", architect: "Grimshaw", year: 2001,
+    note: "버블 돔(바이옴)으로 만든 거대 식물원.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Eden_project.JPG/960px-Eden_project.JPG"
+  },
+
+  // ── France ─────────────────────────────────────────────
+  {
+    name: "빌라 사보아", nameEn: "Villa Savoye",
+    city: "Poissy", country: "France", lat: 48.9244, lng: 2.0283,
+    status: "toVisit", architect: "Le Corbusier", year: 1931,
+    note: "근대건축 5원칙을 구현한 흰 상자 주택.",
+    photo: "https://upload.wikimedia.org/wikipedia/en/3/3c/VillaSavoye.jpg"
+  },
+  {
+    name: "롱샹 성당", nameEn: "Notre-Dame du Haut",
+    city: "Ronchamp", country: "France", lat: 47.7045, lng: 6.6206,
+    status: "toVisit", architect: "Le Corbusier", year: 1955,
+    note: "곡면 지붕과 두꺼운 벽의 조각 같은 예배당.",
+    photo: "https://upload.wikimedia.org/wikipedia/en/5/59/RonchampCorbu.jpg"
+  },
+  {
+    name: "위니테 다비타시옹", nameEn: "Unité d'habitation",
+    city: "Marseille", country: "France", lat: 43.2613, lng: 5.3963,
+    status: "toVisit", architect: "Le Corbusier", year: 1952,
+    note: "필로티 위 거대 콘크리트 주거, 브루탈리즘의 출발.",
+    photo: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ec/Unit%C3%A9_d%27habitation_Marseille%2C_France.jpg/960px-Unit%C3%A9_d%27habitation_Marseille%2C_France.jpg"
+  },
+  {
+    name: "파리 필하모니", nameEn: "Philharmonie de Paris",
+    city: "Paris", country: "France", lat: 48.8893, lng: 2.3936,
+    status: "toVisit", architect: "Jean Nouvel", year: 2015,
+    note: "새 모양 알루미늄 타일로 덮인 콘서트홀.",
+    photo: "https://upload.wikimedia.org/wikipedia/en/thumb/e/ee/Philharmonie_de_Paris.jpg/960px-Philharmonie_de_Paris.jpg"
+  },
+  {
+    name: "아랍 세계 연구소", nameEn: "Institut du monde arabe",
+    city: "Paris", country: "France", lat: 48.8490, lng: 2.3573,
+    status: "toVisit", architect: "Jean Nouvel", year: 1987,
+    note: "빛에 반응해 조리개처럼 열리는 금속 파사드.",
+    photo: "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Paris_-_Institut_du_Monde_Arabe_%2827136624340%29.jpg/960px-Paris_-_Institut_du_Monde_Arabe_%2827136624340%29.jpg"
+  },
+
+  // ── Spain ──────────────────────────────────────────────
+  {
+    name: "카사 밀라 (라 페드레라)", nameEn: "Casa Milà",
+    city: "Barcelona", country: "Spain", lat: 41.3953, lng: 2.1617,
+    status: "toVisit", architect: "Antoni Gaudí", year: 1912,
+    note: "물결치는 석조 외벽의 가우디 주택.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Casa_Mil%C3%A0%2C_general_view.jpg/960px-Casa_Mil%C3%A0%2C_general_view.jpg"
+  },
+  {
+    name: "구엘 공원", nameEn: "Park Güell",
+    city: "Barcelona", country: "Spain", lat: 41.4136, lng: 2.1528,
+    status: "toVisit", architect: "Antoni Gaudí", year: 1914,
+    note: "타일 모자이크 가득한 가우디의 정원 도시.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/960px-Parc_guell_-_panoramio.jpg"
+  },
+  {
+    name: "카사 비센스", nameEn: "Casa Vicens",
+    city: "Barcelona", country: "Spain", lat: 41.4036, lng: 2.1516,
+    status: "toVisit", architect: "Antoni Gaudí", year: 1885,
+    note: "가우디의 첫 주택, 무어풍 타일 외관.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Gaud%C3%AD_-_Casa_Vicens.JPG/960px-Gaud%C3%AD_-_Casa_Vicens.JPG"
+  },
+  {
+    name: "카탈라나 음악당", nameEn: "Palau de la Música Catalana",
+    city: "Barcelona", country: "Spain", lat: 41.3875, lng: 2.1751,
+    status: "toVisit", architect: "Domènech i Montaner", year: 1908,
+    note: "스테인드글라스 천창의 모데르니스메 콘서트홀.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/22_11_01_Palau_DSCF2611_52502512616_cc1e7db845_k.jpg/960px-22_11_01_Palau_DSCF2611_52502512616_cc1e7db845_k.jpg"
+  },
+  {
+    name: "예술과학도시", nameEn: "City of Arts and Sciences",
+    city: "Valencia", country: "Spain", lat: 39.4542, lng: -0.3500,
+    status: "toVisit", architect: "Santiago Calatrava", year: 1998,
+    note: "흰 뼈대 같은 칼라트라바의 미래도시 복합단지.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Museo_Pr%C3%ADncipe_Felipe%2C_Ciudad_de_las_Artes_y_las_Ciencias%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-29%2C_DD_56.JPG/960px-Museo_Pr%C3%ADncipe_Felipe%2C_Ciudad_de_las_Artes_y_las_Ciencias%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-29%2C_DD_56.JPG"
+  },
+  {
+    name: "메트로폴 파라솔", nameEn: "Metropol Parasol",
+    city: "Seville", country: "Spain", lat: 37.3934, lng: -5.9905,
+    status: "toVisit", architect: "Jürgen Mayer", year: 2011,
+    note: "세계 최대 목조 구조물, 별명 '버섯(Setas)'.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Metropolparasolnov2011001.jpg/960px-Metropolparasolnov2011001.jpg"
+  },
+
+  // ── Netherlands ────────────────────────────────────────
+  {
+    name: "리트벨트 슈뢰더 하우스", nameEn: "Rietveld Schröder House",
+    city: "Utrecht", country: "Netherlands", lat: 52.0853, lng: 5.1476,
+    status: "toVisit", architect: "Gerrit Rietveld", year: 1924,
+    note: "데 스테일을 입체로 구현한 주택.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Rietveld_Schr%C3%B6derhuis_HayKranen-20.JPG/960px-Rietveld_Schr%C3%B6derhuis_HayKranen-20.JPG"
+  },
+  {
+    name: "판 넬러 공장", nameEn: "Van Nelle Factory",
+    city: "Rotterdam", country: "Netherlands", lat: 51.9244, lng: 4.4326,
+    status: "toVisit", architect: "Brinkman & Van der Vlugt", year: 1931,
+    note: "유리와 철의 기능주의 공장, 유네스코 유산.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Rotterdam_van_nelle_fabriek.jpg/960px-Rotterdam_van_nelle_fabriek.jpg"
+  },
+  {
+    name: "더 로테르담", nameEn: "De Rotterdam",
+    city: "Rotterdam", country: "Netherlands", lat: 51.9055, lng: 4.4870,
+    status: "toVisit", architect: "OMA (Rem Koolhaas)", year: 2013,
+    note: "엇갈려 쌓은 '수직 도시' 복합 타워.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/De_Rotterdam%2C_September_2019_-_01.jpg/960px-De_Rotterdam%2C_September_2019_-_01.jpg"
+  },
+
+  // ── Germany ────────────────────────────────────────────
+  {
+    name: "아인슈타인 탑", nameEn: "Einstein Tower",
+    city: "Potsdam", country: "Germany", lat: 52.3789, lng: 13.0644,
+    status: "toVisit", architect: "Erich Mendelsohn", year: 1921,
+    note: "흐르는 곡선의 표현주의 천문 관측탑.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Potsdam_Telegrafenberg_asv2023-09_img4.jpg/960px-Potsdam_Telegrafenberg_asv2023-09_img4.jpg"
+  },
+  {
+    name: "엘프필하모니", nameEn: "Elbphilharmonie",
+    city: "Hamburg", country: "Germany", lat: 53.5413, lng: 9.9841,
+    status: "toVisit", architect: "Herzog & de Meuron", year: 2016,
+    note: "옛 창고 위에 올린 파도 모양 유리 콘서트홀.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Elbphilharmonie_2025.jpg/960px-Elbphilharmonie_2025.jpg"
+  },
+  {
+    name: "바우하우스 데사우", nameEn: "Bauhaus Dessau",
+    city: "Dessau", country: "Germany", lat: 51.8385, lng: 12.2270,
+    status: "toVisit", architect: "Walter Gropius", year: 1926,
+    note: "모더니즘 디자인 학교의 상징적 교사(校舍).",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Dessau_Bauhaus-Geb%C3%A4ude_asv2024-06_img1.jpg/960px-Dessau_Bauhaus-Geb%C3%A4ude_asv2024-06_img1.jpg"
+  },
+  {
+    name: "뮌헨 올림픽 스타디움", nameEn: "Olympiastadion (Munich)",
+    city: "Munich", country: "Germany", lat: 48.1731, lng: 11.5466,
+    status: "toVisit", architect: "Frei Otto & Behnisch", year: 1972,
+    note: "거미줄 같은 장력 막구조 지붕.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/2022-08-21_Olympiapark_M%C3%BCnchen_by_Sandro_Halank%E2%80%93025.jpg/960px-2022-08-21_Olympiapark_M%C3%BCnchen_by_Sandro_Halank%E2%80%93025.jpg"
+  },
+  {
+    name: "알리안츠 아레나", nameEn: "Allianz Arena",
+    city: "Munich", country: "Germany", lat: 48.2188, lng: 11.6247,
+    status: "toVisit", architect: "Herzog & de Meuron", year: 2005,
+    note: "색이 바뀌는 공기막 쿠션 외피의 경기장.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Allianz_Arena_2008-02-09.jpg/960px-Allianz_Arena_2008-02-09.jpg"
+  },
+  {
+    name: "비트라 디자인 미술관", nameEn: "Vitra Design Museum",
+    city: "Weil am Rhein", country: "Germany", lat: 47.5996, lng: 7.6118,
+    status: "toVisit", architect: "Frank Gehry", year: 1989,
+    note: "게리의 첫 유럽작, 해체주의 흰 조형.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Vitra_Design_Museum.JPG/960px-Vitra_Design_Museum.JPG"
+  },
+  {
+    name: "파에노 과학센터", nameEn: "Phaeno Science Center",
+    city: "Wolfsburg", country: "Germany", lat: 52.4290, lng: 10.7896,
+    status: "toVisit", architect: "Zaha Hadid", year: 2005,
+    note: "콘크리트 콘(cone) 위에 떠 있는 듯한 덩어리.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Phaeno_Suedseite_RB.jpg/960px-Phaeno_Suedseite_RB.jpg"
+  },
+
+  // ── Italy ──────────────────────────────────────────────
+  {
+    name: "몰레 안토넬리아나", nameEn: "Mole Antonelliana",
+    city: "Turin", country: "Italy", lat: 45.0689, lng: 7.6931,
+    status: "toVisit", architect: "Alessandro Antonelli", year: 1889,
+    note: "당대 세계 최고 높이의 벽돌 첨탑.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Mole_Antonelliana_%28Torino%29_09.jpg/960px-Mole_Antonelliana_%28Torino%29_09.jpg"
+  },
+
+  // ── Austria ────────────────────────────────────────────
+  {
+    name: "쿤스트하우스 그라츠", nameEn: "Kunsthaus Graz",
+    city: "Graz", country: "Austria", lat: 47.0708, lng: 15.4348,
+    status: "toVisit", architect: "Peter Cook & Colin Fournier", year: 2003,
+    note: "별명 '친근한 외계인', 푸른 비정형 블롭.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Graz_Kunsthaus_vom_Schlossberg_20061126.jpg/960px-Graz_Kunsthaus_vom_Schlossberg_20061126.jpg"
+  },
+  {
+    name: "쿤스트하우스 브레겐츠", nameEn: "Kunsthaus Bregenz",
+    city: "Bregenz", country: "Austria", lat: 47.5048, lng: 9.7470,
+    status: "toVisit", architect: "Peter Zumthor", year: 1997,
+    note: "반투명 유리 비늘로 빛을 거르는 미술관.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Kornmarktstra%C3%9Fe_3_Kunsthaus%2C_1.JPG/960px-Kornmarktstra%C3%9Fe_3_Kunsthaus%2C_1.JPG"
+  },
+
+  // ── Switzerland ────────────────────────────────────────
+  {
+    name: "발스 테르메", nameEn: "Therme Vals",
+    city: "Vals", country: "Switzerland", lat: 46.6186, lng: 9.1810,
+    status: "toVisit", architect: "Peter Zumthor", year: 1996,
+    note: "현지 편마암으로 쌓은 명상적 온천, 건축 순례지.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/2005-08-06-Therme-Vals-Peter-Zumthor_07.jpg/960px-2005-08-06-Therme-Vals-Peter-Zumthor_07.jpg"
+  },
+  {
+    name: "괴테아눔", nameEn: "Goetheanum",
+    city: "Dornach", country: "Switzerland", lat: 47.4855, lng: 7.6203,
+    status: "toVisit", architect: "Rudolf Steiner", year: 1928,
+    note: "조각처럼 빚은 표현주의 콘크리트 건축.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Goetheanum_Dornach2.jpg/960px-Goetheanum_Dornach2.jpg"
+  },
+  {
+    name: "바이엘러 재단 미술관", nameEn: "Beyeler Foundation",
+    city: "Basel", country: "Switzerland", lat: 47.5836, lng: 7.6586,
+    status: "toVisit", architect: "Renzo Piano", year: 1997,
+    note: "정원과 빛을 끌어들인 절제된 미술관.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Riehen_-_Fondation_Beyeler.jpg/960px-Riehen_-_Fondation_Beyeler.jpg"
+  },
+
+  // ── Finland ────────────────────────────────────────────
+  {
+    name: "템펠리아우키오 교회 (암석 교회)", nameEn: "Temppeliaukio Church",
+    city: "Helsinki", country: "Finland", lat: 60.1732, lng: 24.9253,
+    status: "toVisit", architect: "Timo & Tuomo Suomalainen", year: 1969,
+    note: "화강암 암반을 파내 만든 빛의 교회.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Temppeliaukio_Church_Helsinki.jpg/960px-Temppeliaukio_Church_Helsinki.jpg"
+  },
+  {
+    name: "핀란디아 홀", nameEn: "Finlandia Hall",
+    city: "Helsinki", country: "Finland", lat: 60.1758, lng: 24.9336,
+    status: "toVisit", architect: "Alvar Aalto", year: 1971,
+    note: "흰 대리석으로 마감한 알토의 콘서트홀.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Finlandia_Hall-7141.jpg/960px-Finlandia_Hall-7141.jpg"
+  },
+  {
+    name: "오디 도서관", nameEn: "Helsinki Central Library Oodi",
+    city: "Helsinki", country: "Finland", lat: 60.1736, lng: 24.9383,
+    status: "toVisit", architect: "ALA Architects", year: 2018,
+    note: "목재 곡면과 유리로 열린 시민 도서관.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Oodi_Library_%28Helsinki%2C_Finland%29.jpg/960px-Oodi_Library_%28Helsinki%2C_Finland%29.jpg"
+  },
+
+  // ── Norway ─────────────────────────────────────────────
+  {
+    name: "오슬로 오페라하우스", nameEn: "Oslo Opera House",
+    city: "Oslo", country: "Norway", lat: 59.9075, lng: 10.7531,
+    status: "toVisit", architect: "Snøhetta", year: 2008,
+    note: "빙산처럼 물에서 솟아 지붕을 걸어 오르는 오페라.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Oslo_opera_house_morning.jpg/960px-Oslo_opera_house_morning.jpg"
+  },
+
+  // ── Sweden ─────────────────────────────────────────────
+  {
+    name: "터닝 토르소", nameEn: "Turning Torso",
+    city: "Malmö", country: "Sweden", lat: 55.6132, lng: 12.9763,
+    status: "toVisit", architect: "Santiago Calatrava", year: 2005,
+    note: "90도로 비틀린 인체 토르소 형상의 타워.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Turning_Torso2.jpg/960px-Turning_Torso2.jpg"
+  },
+  {
+    name: "스톡홀름 시립도서관", nameEn: "Stockholm Public Library",
+    city: "Stockholm", country: "Sweden", lat: 59.3439, lng: 18.0540,
+    status: "toVisit", architect: "Gunnar Asplund", year: 1928,
+    note: "원통형 열람실의 북유럽 고전주의 도서관.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/AsplundGunnarBibliotheque.jpg/960px-AsplundGunnarBibliotheque.jpg"
+  },
+
+  // ── Denmark ────────────────────────────────────────────
+  {
+    name: "그룬트비 교회", nameEn: "Grundtvig's Church",
+    city: "Copenhagen", country: "Denmark", lat: 55.7047, lng: 12.5326,
+    status: "toVisit", architect: "P. V. Jensen-Klint", year: 1940,
+    note: "오르간 파이프 같은 표현주의 벽돌 교회.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Grundtvig%E2%80%99s_Church_02_%28level_and_colour_adjust%29.jpg/960px-Grundtvig%E2%80%99s_Church_02_%28level_and_colour_adjust%29.jpg"
+  },
+  {
+    name: "마운틴 드웰링스", nameEn: "Mountain Dwellings",
+    city: "Copenhagen", country: "Denmark", lat: 55.6315, lng: 12.5773,
+    status: "toVisit", architect: "BIG + JDS", year: 2008,
+    note: "주차장 위 계단식 테라스 산처럼 쌓은 주거.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/VM_Bjerget.JPG/960px-VM_Bjerget.JPG"
+  },
+
+  // ── Czechia ────────────────────────────────────────────
+  {
+    name: "댄싱 하우스", nameEn: "Dancing House",
+    city: "Prague", country: "Czechia", lat: 50.0755, lng: 14.4143,
+    status: "toVisit", architect: "Frank Gehry & Vlado Milunić", year: 1996,
+    note: "춤추는 한 쌍처럼 휘어진 코너 건물.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Tanzendes_Haus_2023.jpg/960px-Tanzendes_Haus_2023.jpg"
+  },
+  {
+    name: "빌라 투겐트하트", nameEn: "Villa Tugendhat",
+    city: "Brno", country: "Czechia", lat: 49.2071, lng: 16.6156,
+    status: "toVisit", architect: "Mies van der Rohe", year: 1930,
+    note: "흐르는 평면과 통유리의 모더니즘 주택.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Vila_Tugendhat_exterior_Dvorak2.JPG/960px-Vila_Tugendhat_exterior_Dvorak2.JPG"
+  },
+
+  // ── Poland ─────────────────────────────────────────────
+  {
+    name: "백주년 기념관", nameEn: "Centennial Hall",
+    city: "Wrocław", country: "Poland", lat: 51.1069, lng: 17.0772,
+    status: "toVisit", architect: "Max Berg", year: 1913,
+    note: "초기 철근콘크리트 대형 돔, 유네스코 유산.",
+    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Wroclaw_-_Hala_Stulecia_03.jpg/960px-Wroclaw_-_Hala_Stulecia_03.jpg"
+  },
+
+  // ── Greece ─────────────────────────────────────────────
+  {
+    name: "스타브로스 니아르호스 문화센터", nameEn: "Stavros Niarchos Foundation Cultural Center",
+    city: "Athens", country: "Greece", lat: 37.9398, lng: 23.6925,
+    status: "toVisit", architect: "Renzo Piano", year: 2016,
+    note: "태양광 캐노피를 인 도서관·오페라 복합문화공간.",
+    photo: "https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Stavros_Niarchos_Foundation_Cultural_Center_-_52035330487.jpg/960px-Stavros_Niarchos_Foundation_Cultural_Center_-_52035330487.jpg"
   }
 ];
