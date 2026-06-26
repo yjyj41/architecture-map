@@ -30,5 +30,5 @@ const FIREBASE_CONFIG = {
 };
 
 // MapTiler API 키 (지도 스타일용). 비워두면 기본 미니멀 타일로 표시됩니다.
-const MAPTILER_KEY = "gwe3oJ224j05calWMtAr";
+const MAPTILER_KEY = "6mGTT6imBThvskqWPEdq"; // yjyj41.github.io / localhost 로 제한된 키
 const MAP_STYLE = "aquarelle"; // 예: aquarelle, toner-v2, streets-v2, basic-v2
