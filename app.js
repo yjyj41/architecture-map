@@ -4,16 +4,32 @@
 
 const map = L.map("map", { zoomControl: true }).setView([48.6, 6.0], 5);
 
-// 미니멀한 밝은 타일 (CartoDB Positron)
-L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-  {
+// 지도 타일: MapTiler 키가 있으면 해당 스타일(기본 Aquarelle, 수채화풍),
+// 없으면 키 없는 미니멀 타일(CartoDB Positron)로 자동 폴백.
+const _key = typeof MAPTILER_KEY !== "undefined" ? MAPTILER_KEY : "";
+const _style = typeof MAP_STYLE !== "undefined" && MAP_STYLE ? MAP_STYLE : "aquarelle";
+
+if (_key) {
+  L.tileLayer(
+    "https://api.maptiler.com/maps/" + _style + "/{z}/{x}/{y}.png?key=" + _key,
+    {
+      tileSize: 512,
+      zoomOffset: -1,
+      minZoom: 1,
+      maxZoom: 20,
+      crossOrigin: true,
+      attribution:
+        '<a href="https://www.maptiler.com/copyright/">© MapTiler</a> · <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap</a>',
+    }
+  ).addTo(map);
+} else {
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
     attribution:
       '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: "abcd",
     maxZoom: 20,
-  }
-).addTo(map);
+  }).addTo(map);
+}
 
 const COLORS = { visited: "#2f6b46", toVisit: "#b23b2e" };
 

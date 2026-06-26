@@ -28,4 +28,7 @@ const FIREBASE_CONFIG = {
   messagingSenderId: "1091019965722",
   appId: "1:1091019965722:web:5a46ff74b6a26ef97658a3",
 };
-// end of config
+
+// MapTiler API 키 (지도 스타일용). 비워두면 기본 미니멀 타일로 표시됩니다.
+const MAPTILER_KEY = "gwe3oJ224j05calWMtAr";
+const MAP_STYLE = "aquarelle"; // 예: aquarelle, toner-v2, streets-v2, basic-v2
