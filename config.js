@@ -28,3 +28,4 @@ const FIREBASE_CONFIG = {
   messagingSenderId: "1091019965722",
   appId: "1:1091019965722:web:5a46ff74b6a26ef97658a3",
 };
+// end of config

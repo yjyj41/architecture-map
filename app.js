@@ -1,33 +1,34 @@
 // ───────────────────────────────────────────────────────────────
-// Architecture Map — 메인 앱
+// Architecture Map — 메인 앱 (Divisare 풍 아카이브 + 미니멀 지도)
 // ───────────────────────────────────────────────────────────────
 
-// 지도 초기화 (런던 중심)
-const map = L.map("map").setView([51.5085, -0.0918], 6);
+const map = L.map("map", { zoomControl: true }).setView([48.6, 6.0], 5);
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: "© OpenStreetMap contributors",
-  maxZoom: 19,
-}).addTo(map);
+// 미니멀한 밝은 타일 (CartoDB Positron)
+L.tileLayer(
+  "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+  {
+    attribution:
+      '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> · © <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: "abcd",
+    maxZoom: 20,
+  }
+).addTo(map);
 
-const COLORS = { visited: "#2e7d52", toVisit: "#c0392b" };
+const COLORS = { visited: "#2f6b46", toVisit: "#b23b2e" };
 
 function makeIcon(status) {
   const color = COLORS[status] || "#555";
   return L.divIcon({
-    className: "custom-marker",
-    html:
-      '<div style="width:16px;height:16px;border-radius:50%;background:' +
-      color +
-      ';border:2px solid #fff;box-shadow:0 0 4px rgba(0,0,0,0.4);"></div>',
-    iconSize: [16, 16],
-    iconAnchor: [8, 8],
+    className: "",
+    html: '<div class="marker-dot" style="background:' + color + '"></div>',
+    iconSize: [14, 14],
+    iconAnchor: [7, 7],
   });
 }
 
 const markerLayer = L.layerGroup().addTo(map);
 
-// ── DOM 참조 ──────────────────────────────────────────────
 const els = {
   list: document.getElementById("place-list"),
   search: document.getElementById("search"),
@@ -40,8 +41,9 @@ const els = {
   storageMode: document.getElementById("storage-mode"),
 };
 
-let allPlaces = []; // Store가 주는 원본
-let markerIndex = {}; // id -> marker (리스트 클릭 시 팝업 열기)
+let allPlaces = [];
+let markerIndex = {};
+let firstFit = true;
 
 function esc(s) {
   return String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({
@@ -49,37 +51,36 @@ function esc(s) {
   }[c]));
 }
 
-// ── 팝업 HTML ─────────────────────────────────────────────
+// ── 팝업 ──────────────────────────────────────────────────
 function popupHtml(p) {
-  let html = '<div class="popup-title">' + esc(p.name) + "</div>";
-  html +=
-    '<div class="popup-meta">' +
-    esc(p.architect || "") +
-    (p.year ? " · " + esc(p.year) : "") +
-    " · " + esc(p.city) +
-    (p.country ? ", " + esc(p.country) : "") +
-    "</div>";
+  let html = "";
   if (p.photo)
-    html +=
-      '<img src="' + esc(p.photo) +
-      '" style="width:100%;border-radius:4px;margin:4px 0;" onerror="this.style.display=\'none\'" />';
+    html += '<img class="popup-img" src="' + esc(p.photo) +
+      '" onerror="this.style.display=\'none\'" />';
+  html += '<div class="popup-body">';
+  html += '<div class="popup-architect">' + esc(p.architect || "") + "</div>";
+  html += '<div class="popup-title">' + esc(p.name) + "</div>";
+  html += '<div class="popup-meta">' +
+    (p.year ? esc(p.year) + " · " : "") + esc(p.city) +
+    (p.country ? ", " + esc(p.country) : "") + "</div>";
   if (p.note) html += '<div class="popup-note">' + esc(p.note) + "</div>";
+  html += "</div>";
   return html;
 }
 
-// ── 국가 드롭다운 채우기 (선택 보존) ───────────────────────
+// ── 국가 드롭다운 ─────────────────────────────────────────
 function refreshCountryOptions() {
   const current = els.country.value;
   const countries = Array.from(
     new Set(allPlaces.map((p) => p.country).filter(Boolean))
   ).sort();
   els.country.innerHTML =
-    '<option value="">전체 국가</option>' +
+    '<option value="">All countries</option>' +
     countries.map((c) => '<option value="' + esc(c) + '">' + esc(c) + "</option>").join("");
   if (countries.indexOf(current) !== -1) els.country.value = current;
 }
 
-// ── 필터 + 정렬 적용 ──────────────────────────────────────
+// ── 필터 + 정렬 ───────────────────────────────────────────
 function visiblePlaces() {
   const q = els.search.value.trim().toLowerCase();
   const country = els.country.value;
@@ -107,82 +108,110 @@ function visiblePlaces() {
   return list;
 }
 
+// ── 카드 ──────────────────────────────────────────────────
+function buildCard(p) {
+  const li = document.createElement("li");
+  li.className = "card";
+
+  const statusLabel = p.status === "visited" ? "Visited" : "To visit";
+  const dotClass = p.status === "visited" ? "visited" : "tovisit";
+  const toggleLabel = p.status === "visited" ? "갈 곳으로" : "가봤어요";
+
+  const thumbInner = p.photo
+    ? '<img src="' + esc(p.photo) + '" loading="lazy" alt="' + esc(p.name) +
+      '" onerror="this.parentNode.innerHTML=\'<div class=&quot;noimg&quot;>NO IMAGE</div>\'" />'
+    : '<div class="noimg">사진 없음 · 추가하기</div>';
+
+  li.innerHTML =
+    '<div class="thumb">' + thumbInner +
+      '<div class="badge"><span class="dot ' + dotClass + '"></span>' + statusLabel + "</div>" +
+    "</div>" +
+    '<div class="caption">' +
+      '<div class="architect">' + esc(p.architect || "—") + "</div>" +
+      '<div class="name">' + esc(p.name) + "</div>" +
+      '<div class="meta">' + (p.year ? esc(p.year) + " · " : "") +
+        esc(p.city) + (p.country ? ", " + esc(p.country) : "") + "</div>" +
+    "</div>" +
+    '<div class="actions">' +
+      '<button class="photo">사진</button>' +
+      '<button class="toggle">' + toggleLabel + "</button>" +
+      '<button class="del">삭제</button>' +
+    "</div>";
+
+  // 카드 클릭 → 지도 이동 + 팝업
+  li.addEventListener("click", () => {
+    if (typeof p.lat === "number") {
+      map.setView([p.lat, p.lng], 15, { animate: true });
+      const m = markerIndex[p.id];
+      if (m) m.openPopup();
+    }
+  });
+
+  li.querySelector(".photo").addEventListener("click", (e) => {
+    e.stopPropagation();
+    const url = window.prompt("사진 URL을 입력하세요 (비우면 삭제):", p.photo || "");
+    if (url === null) return;
+    Store.update(p.id, { photo: url.trim() });
+  });
+  li.querySelector(".toggle").addEventListener("click", (e) => {
+    e.stopPropagation();
+    Store.update(p.id, { status: p.status === "visited" ? "toVisit" : "visited" });
+  });
+  li.querySelector(".del").addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (confirm('"' + p.name + '" 을(를) 삭제할까요?')) Store.remove(p.id);
+  });
+
+  return li;
+}
+
 // ── 렌더링 ────────────────────────────────────────────────
 function render() {
   const list = visiblePlaces();
 
-  // 마커
   markerLayer.clearLayers();
   markerIndex = {};
+  const pts = [];
   list.forEach((p) => {
     if (typeof p.lat !== "number" || typeof p.lng !== "number") return;
     const marker = L.marker([p.lat, p.lng], { icon: makeIcon(p.status) })
-      .bindPopup(popupHtml(p));
+      .bindPopup(popupHtml(p), { maxWidth: 240, minWidth: 240 });
     marker.addTo(markerLayer);
     markerIndex[p.id] = marker;
+    pts.push([p.lat, p.lng]);
   });
 
-  // 리스트
   els.list.innerHTML = "";
-  list.forEach((p) => {
+  if (!list.length) {
     const li = document.createElement("li");
-    li.className = "place-item";
-    const dotClass = p.status === "visited" ? "visited" : "tovisit";
-    const toggleLabel = p.status === "visited" ? "갈 곳으로" : "가봤어요";
-    li.innerHTML =
-      '<div class="place-main">' +
-        '<div class="name"><span class="dot ' + dotClass + '"></span>' + esc(p.name) + "</div>" +
-        '<div class="meta">' + esc(p.architect || "") +
-          (p.year ? " · " + esc(p.year) : "") +
-          " · " + esc(p.city) + "</div>" +
-      "</div>" +
-      '<div class="place-actions">' +
-        '<button class="mini toggle" title="상태 변경">' + toggleLabel + "</button>" +
-        '<button class="mini del" title="삭제">✕</button>' +
-      "</div>";
-
-    li.querySelector(".place-main").addEventListener("click", () => {
-      if (typeof p.lat === "number") {
-        map.setView([p.lat, p.lng], 15);
-        const m = markerIndex[p.id];
-        if (m) m.openPopup();
-      }
-    });
-    li.querySelector(".toggle").addEventListener("click", (e) => {
-      e.stopPropagation();
-      const next = p.status === "visited" ? "toVisit" : "visited";
-      Store.update(p.id, { status: next });
-    });
-    li.querySelector(".del").addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (confirm('"' + p.name + '" 을(를) 삭제할까요?')) Store.remove(p.id);
-    });
-
+    li.className = "empty";
+    li.textContent = "조건에 맞는 건축물이 없습니다.";
     els.list.appendChild(li);
-  });
+  } else {
+    list.forEach((p) => els.list.appendChild(buildCard(p)));
+  }
 
-  // 통계 (필터와 무관하게 전체 기준)
   els.statVisited.textContent = allPlaces.filter((p) => p.status === "visited").length;
   els.statToVisit.textContent = allPlaces.filter((p) => p.status === "toVisit").length;
+
+  // 첫 로드 시 마커 전체가 보이도록 맞춤
+  if (firstFit && pts.length) {
+    firstFit = false;
+    map.fitBounds(pts, { padding: [50, 50], maxZoom: 12 });
+  }
 }
 
-// ── 지오코딩 (OpenStreetMap Nominatim, 무료) ───────────────
+// ── 지오코딩 (Nominatim) ─────────────────────────────────
 const geoResults = document.getElementById("geocode-results");
-
 function doGeocode() {
   const q = document.getElementById("f-query").value.trim();
   if (!q) return;
   geoResults.innerHTML = '<div class="geo-loading">검색 중…</div>';
-  const url =
-    "https://nominatim.openstreetmap.org/search?format=json&limit=5&q=" +
-    encodeURIComponent(q);
-  fetch(url, { headers: { Accept: "application/json" } })
+  fetch("https://nominatim.openstreetmap.org/search?format=json&limit=5&q=" +
+    encodeURIComponent(q), { headers: { Accept: "application/json" } })
     .then((r) => r.json())
     .then((rows) => {
-      if (!rows.length) {
-        geoResults.innerHTML = '<div class="geo-loading">결과 없음</div>';
-        return;
-      }
+      if (!rows.length) { geoResults.innerHTML = '<div class="geo-loading">결과 없음</div>'; return; }
       geoResults.innerHTML = "";
       rows.forEach((row) => {
         const div = document.createElement("div");
@@ -191,20 +220,16 @@ function doGeocode() {
         div.addEventListener("click", () => {
           document.getElementById("f-lat").value = parseFloat(row.lat).toFixed(5);
           document.getElementById("f-lng").value = parseFloat(row.lon).toFixed(5);
-          geoResults.innerHTML =
-            '<div class="geo-ok">좌표 설정됨: ' +
-            parseFloat(row.lat).toFixed(5) + ", " + parseFloat(row.lon).toFixed(5) +
-            "</div>";
+          geoResults.innerHTML = '<div class="geo-ok">좌표 설정됨: ' +
+            parseFloat(row.lat).toFixed(5) + ", " + parseFloat(row.lon).toFixed(5) + "</div>";
         });
         geoResults.appendChild(div);
       });
     })
-    .catch(() => {
-      geoResults.innerHTML = '<div class="geo-loading">검색 실패 (네트워크)</div>';
-    });
+    .catch(() => { geoResults.innerHTML = '<div class="geo-loading">검색 실패 (네트워크)</div>'; });
 }
 
-// ── 폼 제출: 새 장소 추가 ─────────────────────────────────
+// ── 폼 ────────────────────────────────────────────────────
 function readForm() {
   const status = document.querySelector('input[name="f-status"]:checked').value;
   const yearVal = document.getElementById("f-year").value;
@@ -237,19 +262,15 @@ function handleSubmit(e) {
   });
 }
 
-// ── data.js용 코드 내보내기 (클립보드 복사) ────────────────
 function exportCode() {
   const p = readForm();
-  if (!p.name) {
-    alert("먼저 폼을 채워주세요.");
-    return;
-  }
+  if (!p.name) { alert("먼저 폼을 채워주세요."); return; }
   const code =
     "  {\n" +
-    '    name: ' + JSON.stringify(p.name) + ', nameEn: "",\n' +
-    '    city: ' + JSON.stringify(p.city) + ", country: " + JSON.stringify(p.country) +
+    "    name: " + JSON.stringify(p.name) + ', nameEn: "",\n' +
+    "    city: " + JSON.stringify(p.city) + ", country: " + JSON.stringify(p.country) +
     ", lat: " + p.lat + ", lng: " + p.lng + ",\n" +
-    '    status: ' + JSON.stringify(p.status) +
+    "    status: " + JSON.stringify(p.status) +
     ", architect: " + JSON.stringify(p.architect) +
     ", year: " + (p.year || "null") + ",\n" +
     "    note: " + JSON.stringify(p.note) +
@@ -265,7 +286,7 @@ function exportCode() {
   }
 }
 
-// ── 이벤트 바인딩 ─────────────────────────────────────────
+// ── 이벤트 ────────────────────────────────────────────────
 els.search.addEventListener("input", render);
 els.country.addEventListener("change", render);
 els.sort.addEventListener("change", render);
@@ -286,7 +307,6 @@ Store.onChange((places) => {
 });
 
 Store.init().then(() => {
-  els.storageMode.textContent =
-    Store.mode === "firebase" ? "☁ 클라우드 저장 (모든 기기 공유)" : "💾 이 브라우저에 저장";
-  els.storageMode.classList.add(Store.mode === "firebase" ? "cloud" : "local");
+  els.storageMode.textContent = Store.mode === "firebase" ? "Cloud sync" : "Local";
+  if (Store.mode === "firebase") els.storageMode.classList.add("cloud");
 });

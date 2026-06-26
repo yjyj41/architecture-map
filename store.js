@@ -1,7 +1,6 @@
 // ───────────────────────────────────────────────────────────────
 // 저장 추상화 계층
 // FIREBASE_CONFIG가 채워져 있으면 Firestore, 아니면 localStorage 사용.
-// 어느 쪽이든 동일한 API를 제공합니다:
 //   Store.init()            -> Promise<void>  (앱 시작 시 1회)
 //   Store.onChange(fn)      -> 데이터 변경 시 fn(places) 호출
 //   Store.getAll()          -> 현재 장소 배열
@@ -9,6 +8,9 @@
 //   Store.update(id, patch) -> Promise (부분 수정)
 //   Store.remove(id)        -> Promise (삭제)
 //   Store.mode              -> 'firebase' | 'local'
+//
+// 추가로, 시드(PLACES)에 사진이 있는데 기존 문서에 사진이 비어 있으면
+// 이름(nameEn/name)으로 매칭해 한 번 자동 채워 넣습니다(백필).
 // ───────────────────────────────────────────────────────────────
 
 const Store = (() => {
@@ -27,18 +29,23 @@ const Store = (() => {
     const snapshot = places.slice();
     listeners.forEach((fn) => fn(snapshot));
   }
+  function onChange(fn) { listeners.push(fn); }
+  function getAll() { return places.slice(); }
 
-  function onChange(fn) {
-    listeners.push(fn);
-  }
-
-  function getAll() {
-    return places.slice();
-  }
-
-  // seed 데이터에 id 부여
   function seedWithIds() {
     return PLACES.map((p) => Object.assign({ id: uid() }, p));
+  }
+
+  // 이름으로 시드 사진 찾기 (백필용)
+  function seedPhotoFor(place) {
+    const key = (place.nameEn || place.name || "").trim();
+    for (let i = 0; i < PLACES.length; i++) {
+      const s = PLACES[i];
+      if ((s.nameEn || "").trim() === key || (s.name || "").trim() === key) {
+        return s.photo || "";
+      }
+    }
+    return "";
   }
 
   function firebaseEnabled() {
@@ -55,35 +62,36 @@ const Store = (() => {
     init() {
       const raw = localStorage.getItem(LS_KEY);
       if (raw) {
-        try {
-          places = JSON.parse(raw);
-        } catch (e) {
-          places = seedWithIds();
-          persist();
-        }
+        try { places = JSON.parse(raw); }
+        catch (e) { places = seedWithIds(); }
       } else {
-        places = seedWithIds(); // 첫 실행: 시드로 초기화
-        persist();
+        places = seedWithIds();
       }
+      // 사진 백필
+      let changed = false;
+      places.forEach((p) => {
+        if (!p.photo) {
+          const ph = seedPhotoFor(p);
+          if (ph) { p.photo = ph; changed = true; }
+        }
+      });
+      persist();
       notify();
       return Promise.resolve();
     },
     add(place) {
       places.push(Object.assign({ id: uid() }, place));
-      persist();
-      notify();
+      persist(); notify();
       return Promise.resolve();
     },
     update(id, patch) {
       places = places.map((p) => (p.id === id ? Object.assign({}, p, patch) : p));
-      persist();
-      notify();
+      persist(); notify();
       return Promise.resolve();
     },
     remove(id) {
       places = places.filter((p) => p.id !== id);
-      persist();
-      notify();
+      persist(); notify();
       return Promise.resolve();
     },
   };
@@ -100,7 +108,6 @@ const Store = (() => {
       const col = db.collection("places");
 
       return col.get().then((snap) => {
-        // 컬렉션이 비어 있으면 시드 데이터로 초기화
         if (snap.empty) {
           const batch = db.batch();
           seedWithIds().forEach((p) => {
@@ -115,22 +122,25 @@ const Store = (() => {
       });
 
       function subscribe() {
-        // 실시간 구독: 어느 기기에서 바꿔도 즉시 반영
+        let backfilled = false;
         col.onSnapshot((snap) => {
           places = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
           notify();
+          if (!backfilled) {
+            backfilled = true;
+            places.forEach((p) => {
+              if (!p.photo) {
+                const ph = seedPhotoFor(p);
+                if (ph) col.doc(p.id).update({ photo: ph }).catch(function () {});
+              }
+            });
+          }
         });
       }
     },
-    add(place) {
-      return db.collection("places").add(place);
-    },
-    update(id, patch) {
-      return db.collection("places").doc(id).update(patch);
-    },
-    remove(id) {
-      return db.collection("places").doc(id).delete();
-    },
+    add(place) { return db.collection("places").add(place); },
+    update(id, patch) { return db.collection("places").doc(id).update(patch); },
+    remove(id) { return db.collection("places").doc(id).delete(); },
   };
 
   let backend = localBackend;
@@ -140,7 +150,6 @@ const Store = (() => {
       mode = "firebase";
       backend = firebaseBackend;
       return backend.init().catch((err) => {
-        // Firebase 실패 시 localStorage로 안전하게 폴백
         console.warn("Firebase 연결 실패 → localStorage로 전환합니다.", err);
         mode = "local";
         backend = localBackend;
@@ -159,8 +168,6 @@ const Store = (() => {
     add: (p) => backend.add(p),
     update: (id, patch) => backend.update(id, patch),
     remove: (id) => backend.remove(id),
-    get mode() {
-      return mode;
-    },
+    get mode() { return mode; },
   };
 })();
